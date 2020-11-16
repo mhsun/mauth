@@ -1,4 +1,4 @@
-## Welcome to the mauth wiki!
+## Welcome to the mauth!
 
 This is simply a demo project to integrate the multi-auth feature using [Laravel](https://laravel.com/).
 
