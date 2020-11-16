@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\Auth\LoginController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,3 +21,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::prefix('admin')->namespace('Admin')->group(function () {
+    Route::get('/login', [LoginController::class, 'showLoginForm']);
+    Route::post('/login', [LoginController::class, 'login']);
+});
