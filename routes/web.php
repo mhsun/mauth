@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\HomeController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,7 +23,20 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::prefix('admin')->namespace('Admin')->group(function () {
-    Route::get('/login', [LoginController::class, 'showLoginForm']);
-    Route::post('/login', [LoginController::class, 'login']);
-});
+Route::prefix('admin')
+    ->namespace('Admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/login', [LoginController::class, 'showLoginForm'])->name('login.form');
+        Route::post('/login', [LoginController::class, 'login'])->name('login');
+        Route::post('/logout', [LoginController::class, 'logout'])->name('logout');
+
+        Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+        /*Route::get('/password/confirm', '');
+        Route::post('/password/confirm', '');
+        Route::post('/password/email', '');
+        Route::get('/password/reset', '');
+        Route::post('/password/reset', '');
+        Route::get('/password/reset/{token}', '');*/
+    });
